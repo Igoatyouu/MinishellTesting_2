@@ -1,0 +1,44 @@
+:: Read the readme file before adding new tests
+
+>>> Pipe commands
+
+> Simple pipe command
+echo -e "ls | cat -e"
+
+> Chained pipe commands
+echo -e "ls | cat -e | grep execs | wc -c"
+
+> Many chained pipe commands
+echo -e "ls | echo salut | cat -e | cat -e | cat -e  | cat -e  | cat -e  | cat -e  | cat -e  | cat -e  | cat -e  | cat -e  | cat -e"
+
+> Without surrouding whitespaces
+echo -e "ls |echo salut"
+
+> Asynchronous
+echo -e "./sleep_and_write_on_stderr 1 salut | ./sleep_and_write_on_stderr 1 salut | ./sleep_and_write_on_stderr 1 salut"
+
+>>> End
+
+>>> Redirections
+
+> Simple redirection to file
+echo -e "ls -la | cat -e > stdout"
+
+> Check redirection to file
+echo -e "cat stdout"
+
+> Simple redirection from file
+echo -e "cat < stdout"
+
+>>> End
+
+
+>>> Multiple category
+
+> Multiple pipes + redirection to file
+echo -e "ls -la | cat -e | grep execs | sed s/execs/temp/g > stdout"
+
+> Redirection from file
+echo -e "cat < stdout"
+
+>>> End
