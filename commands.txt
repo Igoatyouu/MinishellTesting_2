@@ -15,19 +15,37 @@ echo -e "ls | echo salut | cat -e | cat -e | cat -e  | cat -e  | cat -e  | cat -
 echo -e "ls |echo salut"
 
 > Asynchronous
-echo -e "./sleep_and_write_on_stderr 1 salut | ./sleep_and_write_on_stderr 1 salut | ./sleep_and_write_on_stderr 1 salut"
+echo -e "./sleep_and_write_on_stderr 1 salut | ./sleep_and_write_on_stderr 1 moi | ./sleep_and_write_on_stderr 1 toi"
+
+> Mixed (exit or not exit)
+echo -e "exit | echo salut"
+
+> Mixed (cd or not cd)
+echo -e "cd | pwd"
+
+> Mixed (unsetenv or not unsetenv)
+echo -e "setenv axel ; unsetenv axel | env | tail -1"
+
+> Mixed (setenv or not setenv)
+echo -e "setenv axel | env | grep axel"
 
 >>> End
 
 >>> Redirections
 
-> Simple redirection to file
+> (output) Simple redirection to file
 echo -e "ls -la | cat -e > stdout"
 
-> Check redirection to file
-echo -e "cat stdout"
+> (output) Verification of last test
+echo -e "cat output"
 
-> Simple redirection from file
+> (output) Create file if not exists
+echo -e "ls > axel ; cat axel"
+
+> (output) Truncate file if exists
+echo -e "echo salut > axel ; cat axel"
+
+> (input) Simple redirection from file
 echo -e "cat < stdout"
 
 >>> End
