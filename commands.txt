@@ -59,6 +59,21 @@ echo -e "cat<stdout"
 
 >>> End
 
+>>> Semilicon
+
+> Two classic commands
+echo -e "ls ; ls"
+
+> Multiple commands
+echo -e "echo a ; echo b ; ls ; cat -e ; echo eal ; sed s/a/t/g ; echo ammamya"
+
+> Empty inline command
+echo -e "ls ; ; echo salut"
+
+> Empty command
+echo -e ";"
+
+>>> End
 
 >>> Multiple category
 
