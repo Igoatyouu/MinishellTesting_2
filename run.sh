@@ -6,6 +6,12 @@
 ## delete unnecessary files before
 ##
 
+rm -f tmp
 rm -f axel
 rm -f stdout
+rm -rf dir
 ./mini
+rm -f axel
+rm -f stdout
+rm -f tmp
+rm -rf dir

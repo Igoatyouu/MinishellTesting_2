@@ -12,7 +12,7 @@ echo -e "ls | cat -e | grep execs | wc -c"
 echo -e "ls | echo salut | cat -e | cat -e | cat -e  | cat -e  | cat -e  | cat -e  | cat -e  | cat -e  | cat -e  | cat -e  | cat -e"
 
 > Without surrouding whitespaces
-echo -e "ls |echo salut"
+echo -e "ls|echo salut"
 
 > Asynchronous
 echo -e "./sleep_and_write_on_stderr 1 salut | ./sleep_and_write_on_stderr 1 moi | ./sleep_and_write_on_stderr 1 toi"
@@ -45,8 +45,17 @@ echo -e "ls > axel ; cat axel"
 > (output) Truncate file if exists
 echo -e "echo salut > axel ; cat axel"
 
+> (output) No whitespace between redirection delimiter
+echo -e "echo maama>axel ; cat axel"
+
+> (output) Append file if exists
+echo -e "ls > tmp ; echo salut >> tmp ; cat tmp"
+
 > (input) Simple redirection from file
 echo -e "cat < stdout"
+
+> (input) No whitespace between redirection delimiter
+echo -e "cat<stdout"
 
 >>> End
 
@@ -54,9 +63,6 @@ echo -e "cat < stdout"
 >>> Multiple category
 
 > Multiple pipes + redirection to file
-echo -e "ls -la | cat -e | grep execs | sed s/execs/temp/g > stdout"
-
-> Redirection from file
-echo -e "cat < stdout"
+echo -e "cd .. ; cd - ; ls ; ls -la | cat -e | grep execs | sed s/execs/temp/g > stdout"
 
 >>> End
