@@ -14,9 +14,6 @@ echo -e "ls | echo salut | cat -e | cat -e | cat -e  | cat -e  | cat -e  | cat -
 > Without surrouding whitespaces
 echo -e "ls|echo salut"
 
-> Asynchronous
-echo -e "./sleep_and_write_on_stderr 1 salut | ./sleep_and_write_on_stderr 1 moi | ./sleep_and_write_on_stderr 1 toi"
-
 > Mixed (exit or not exit)
 echo -e "exit | echo salut"
 
@@ -28,6 +25,21 @@ echo -e "setenv axel ; unsetenv axel | env | tail -1"
 
 > Mixed (setenv or not setenv)
 echo -e "setenv axel | env | grep axel"
+
+> Syntax (Only pipe)
+echo -e "|"
+
+> Syntax (Pipe without left argument)
+echo -e "| cat -e"
+
+> Syntax (Pipe without right argument)
+echo -e "ls | "
+
+> Pipe
+echo -e "pwd | cat -e | wc"
+
+> Pipe trap
+echo -e "pwd | | | | cat -e"
 
 >>> End
 
@@ -51,6 +63,15 @@ echo -e "echo maama>axel ; cat axel"
 > (output) Append file if exists
 echo -e "ls > tmp ; echo salut >> tmp ; cat tmp"
 
+> (output) Redirection without left argument
+echo -e "> salut"
+
+> (output) Redirection without filename
+echo -e "ls > "
+
+> (output) Only double redirection
+echo -e ">"
+
 > (input) Simple redirection from file
 echo -e "cat < stdout"
 
@@ -73,11 +94,26 @@ echo -e "ls ; ; echo salut"
 > Empty command
 echo -e ";"
 
+> Semicolon
+echo -e "ls;        ls; pwd;   ls"
+
+> Semicolon trap
+echo -e "pwd;; ; pwd"
+
 >>> End
 
 >>> Multiple category
 
 > Multiple pipes + redirection to file
 echo -e "cd .. ; cd - ; ls ; ls -la | cat -e | grep execs | sed s/execs/temp/g > stdout"
+
+> Pipe without right argument with semilicon
+echo -e "ls | ; ls"
+
+> Pipe + Semicolon
+echo -e "pwd | cat -e |    wc; pwd"
+
+>> Pipe + Semicolon trap
+echo -e "pwd | ; cat -e ; |    wc; pwd"
 
 >>> End
